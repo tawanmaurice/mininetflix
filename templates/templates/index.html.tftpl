@@ -1,0 +1,21 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>Mini Netflix – Demo</title>
+<style>
+  body { font-family: system-ui, Arial, sans-serif; margin: 2rem; }
+  .wrap { max-width: 920px; margin: auto; }
+  video { width: 100%; max-width: 900px; display: block; margin: 1rem 0; }
+  .hint { color: #555; font-size: .9rem; }
+</style>
+
+<div class="wrap">
+  <h1>Mini Netflix – HTML5 Player</h1>
+  <video controls preload="metadata" poster="https://${cdn_domain}/poster.jpg">
+    <source src="https://${cdn_domain}/movies/sample.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <p class="hint">
+    This demo streams from CloudFront (origin is a private S3 bucket via OAC).
+    Replace <code>movies/sample.mp4</code> and <code>poster.jpg</code> in the assets bucket to change the video.
+  </p>
+</div>

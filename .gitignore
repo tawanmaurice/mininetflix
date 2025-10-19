@@ -1,5 +1,11 @@
 .terraform/
 *.tfstate
 *.tfstate.backup
-*.pem
 .terraform.lock.hcl
+crash.log
+override.tf
+override.tf.json
+*.tfvars
+*.tfvars.json
+.vscode/
+media/

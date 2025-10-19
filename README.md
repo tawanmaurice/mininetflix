@@ -1,1 +1,0 @@
-# terraform-windows-ec2
