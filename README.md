@@ -1,46 +1,44 @@
 # MiniNetflix (Terraform + AWS Demo)
 
-This project is a Mini Netflix clone built with Terraform on AWS.  
-It uses Amazon S3 + CloudFront + an HTML5 player to stream video content globally.  
+A small “Netflix-style” demo that originally ran on **AWS (S3 + CloudFront)** via Terraform, with an **HTML5 video player**.  
+For portfolio purposes, a working player is hosted on **GitHub Pages** so it’s viewable without AWS costs.
 
-It’s a hands-on demo of how Infrastructure as Code (IaC) can be used to deploy real, working applications.
+**Live Demo (GitHub Pages):** https://tawanmaurice.github.io/mininetflix-pages/
 
 ---
 
-## Features
-- Terraform-managed AWS stack:
-  - S3 bucket for storing media files
-  - CloudFront distribution for global CDN streaming
-  - Public video player generated from a template
-- HTML5 Video Player:
-  - Auto-generated with Terraform template
-  - Ready to play MP4 video hosted on S3
-- Infrastructure as Code workflow:
-  - Simple, reproducible deployment
-  - Easy teardown with one command
+## What this shows
+- Infrastructure as Code (Terraform) to provision AWS:
+  - S3 bucket (static site + media)
+  - CloudFront distribution (global CDN)
+  - IAM policies and OAC where applicable
+- HTML5 video player page generated from a Terraform template
+- Cost-free demo hosting on GitHub Pages (secondary video) for portfolios
 
 ---
 
 ## Project Structure
-- `main.tf` → Creates S3 bucket + CloudFront distribution  
-- `variables.tf` → Defines input variables (e.g., bucket name, region)  
-- `outputs.tf` → Prints CloudFront streaming URL  
-- `provider.tf` → AWS provider configuration  
-- `versions.tf` → Required Terraform + provider versions  
-- `templates/index.html.tftpl` → HTML5 video player template  
+- `main.tf` — S3 bucket(s), CloudFront distribution, policies
+- `variables.tf` — input variables (region, names)
+- `outputs.tf` — outputs (CloudFront URL, S3 website URL)
+- `provider.tf` — AWS provider config
+- `versions.tf` — Terraform + provider version pins
+- `templates/index.html.tftpl` — HTML5 player template used by Terraform
 
 ---
 
-## Prerequisites
-- Terraform installed (v1.5+ recommended)  
-- AWS CLI installed and configured (`aws configure`)  
-- IAM user with S3 + CloudFront permissions  
-- A test MP4 video file to upload  
+## Current Status
+- The AWS stack shown in this repo was **destroyed** (as intended during testing).
+- The demo remains available here: **https://tawanmaurice.github.io/mininetflix-pages/**
+- Redeploying to AWS is one command away with Terraform (see below).
 
 ---
 
-## How to Deploy
+## Redeploy on AWS (optional)
+Prereqs: Terraform v1.5+, AWS CLI configured (`aws configure`), an MP4 video file.
 
-1. Initialize Terraform:
-   ```bash
-   terraform init
+```bash
+terraform init
+terraform plan
+terraform apply -auto-approve
+terraform output -raw cloudfront_url
